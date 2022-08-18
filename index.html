@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .app {
+        display: flex;
+        height: 98vh;
+        flex-wrap: nowrap;
+        flex-direction: column;
+      }
+      .main-action {
+        display: block;
+        border: 1px solid #ccc;
+        border-radius: 1px;
+        padding: 5px;
+        margin: 10px;
+        color: black;
+      }
+      .control {
+        margin: 10px;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-content: space-around;
+        align-items: center;
+        justify-content: center;
+      }
+      .horizontal {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: center;
+      }
+      .btn {
+        width: 40vw;
+        height: 25vh;
+        border: 2px solid #333;
+        border-radius: 5px;
+        margin: 2vh 3vw;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10vh;
+      }
+      .intro {
+        text-align: center;
+      }
+      body {
+        margin: 1vh 1vh;
+        background-color: orange;
+      }
+      @keyframes success { 
+        50% { background-color: green; }
+      }
+      @keyframes error { 
+        50% { background-color: red; }
+      }
+    </style>
+    <title>info-beamer remote controller</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="favicon.png" type="image/png"/>
+  </head>
+  <body>
+    <div id='app'>
+      <app>Loading. This might take a moment..</app>
+    </div>
+    <script>
+      let service = "https://info-beamer.com"
+      // let service = "https://localhost"
+      window.CONFIG = {
+        // Hosted backend config
+        api_root: `${service}/api/v1/`,
+        web_root: service,
+
+        // App config
+        app_root: location.pathname,
+
+        // OAuth
+        client_id: "620e037baf1a31257378b7c09c201516",
+        redirect_uri: window.location.origin + '/',
+        authorization_endpoint: `${service}/oauth/authorize`,
+        token_endpoint: `${service}/oauth/token`,
+        requested_scopes: "device:command device:read",
+      }
+    </script>
+    <script src="vue.global.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
